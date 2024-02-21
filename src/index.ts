@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/health", async (req: Request, res: Response) => {
-    res.send({ message: "health OK!" });
+    res.status(200).send({ message: "health OK!" });
   });
   
 

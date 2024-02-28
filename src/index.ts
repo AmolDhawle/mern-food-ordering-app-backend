@@ -2,7 +2,8 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
-import userRoutes from "./routes/userRoutes" ;
+import MyUserRoutes from "./routes/MyUserRoute" ;
+import MyRestaurantRoutes from "./routes/MyRestaurantRoute";
 import { v2 as cloudinary } from "cloudinary";
 
 mongoose
@@ -12,7 +13,7 @@ mongoose
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLUDINARY
+    api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
 const app = express();
@@ -24,7 +25,9 @@ app.get("/health", async (req: Request, res: Response) => {
   });
   
 
-app.use("/api/my/user", userRoutes);
+app.use("/api/my/user", MyUserRoutes);
+app.use("/api/my/restaurant", MyRestaurantRoutes);
+
 
 app.listen(3000, () => {
     console.log("Server started on port 3000");

@@ -2,8 +2,9 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
-import MyUserRoutes from "./routes/MyUserRoute" ;
-import MyRestaurantRoutes from "./routes/MyRestaurantRoute";
+import myUserRoute from "./routes/MyUserRoute" ;
+import myRestaurantRoute from "./routes/MyRestaurantRoute";
+import restaurantRoute from "./routes/RestaurantRoutes";
 import { v2 as cloudinary } from "cloudinary";
 
 mongoose
@@ -25,8 +26,9 @@ app.get("/health", async (req: Request, res: Response) => {
   });
   
 
-app.use("/api/my/user", MyUserRoutes);
-app.use("/api/my/restaurant", MyRestaurantRoutes);
+app.use("/api/my/user", myUserRoute);
+app.use("/api/my/restaurant", myRestaurantRoute);
+app.use("/api/restaurant", restaurantRoute);
 
 
 app.listen(3000, () => {
